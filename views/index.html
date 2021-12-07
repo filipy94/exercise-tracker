@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise Tracker</title>
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/2216/2216811.png"  type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div class="title">
+      <h1>Exercise Tracker</h1>
+      <h3>Build a full stack JavaScript app that is functionally similar to this: <a target="_blank" href="https://exercise-tracker.freecodecamp.rocks/">FCC URL Exercise Tracker Model</a>.</h3>
+    </div>
+    <div class="container">
+      <form action="/api/users" method="post">
+        <h3>Create a New User</h3>
+        <p><code>POST /api/users</code></p>
+        <input id="uname" type="text" name="username" placeholder="username" />
+        <input type="submit" value="Create" />
+      </form>
+      <form id="exercise-form" method="post">
+        <h3>Add Exercises</h3>
+        <p><code>POST /api/users/:_id/exercises</code></p>
+        <input id="uid" type="text" name="_id" placeholder=":_id" required />
+        <input id="desc" type="text" name="description" placeholder="description*" required />
+        <input id="dur" type="number" name="duration" placeholder="duration* (mins.)" required />
+        <input id="date" type="date" name="date" placeholder="date (yyyy-mm-dd)" />
+        <input type="submit" value="Add" />
+      </form>
+      <p>
+        <strong>GET user's exercise log: </strong>
+        <code>GET /api/users/:_id/logs?from=<i>value</i>&amp;to=<i>value</i>&amp;limit=<i>value</i></code>
+      </p>
+      <p><strong>[ ]</strong> = optional</p>
+      <p><strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p>
+    </div>
+    <footer>
+      <p>
+        Template from: <a href="https://www.freecodecamp.org/">freeCodeCamp.org</a>, 
+        edited by <a href="https://github.com/filipy94">Filipy Dellagnolo</a>. 
+        Project Repository <a href="https://github.com/filipy94/exercise-tracker">here</a>.
+      </p>
+    </footer>
+    <script>
+      const exerciseForm = document.getElementById("exercise-form");
+
+      exerciseForm.addEventListener("submit", () => {
+        const userId = document.getElementById("uid").value;
+        exerciseForm.action = `/api/users/${userId}/exercises`;
+
+        exerciseForm.submit();
+      });
+    </script>
+  </body>
+</html>
